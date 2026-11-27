@@ -13,7 +13,7 @@ const contentTypes: Record<string, string> = {
 
 export async function getStaticPaths() {
   const { items } = await getCatalog();
-  const filenames = new Set(items.map(({ image }) => image.slice("/products/".length)));
+  const filenames = new Set(items.flatMap(({ image }) => image ? [image.slice("/products/".length)] : []));
   return Array.from(filenames, (filename) => ({ params: { filename } }));
 }
 

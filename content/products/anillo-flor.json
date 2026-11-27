@@ -1,0 +1,11 @@
+{
+  "slug": "anillo-flor",
+  "state": "published",
+  "title": "Anillo flor",
+  "category": "anillos",
+  "description": "Este anillo tiene forma de flor y está hecho a mano. Combina colores verde, marrón y diferentes tonos de celeste y verde. La flor simboliza vida, crecimiento y conexión con la naturaleza. Sus colores representan la tierra, las plantas y la calma del cielo y el agua.",
+  "price_ars": 15000,
+  "image": "/products/anillo-flor.webp",
+  "image_alt": "Anillo flor",
+  "position": 360
+}

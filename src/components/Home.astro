@@ -2,11 +2,16 @@
 import BrandLogo from "./BrandLogo.astro";
 import ProductGrid from "./ProductGrid.astro";
 import { getCatalog } from "../lib/catalog";
-import { collections } from "../lib/categories";
+import { categoryInfo, collections } from "../lib/categories";
 import { sitePath, whatsappHref } from "../lib/site";
 
 const { items, editorial } = await getCatalog();
 const shop = sitePath("/es/shop/");
+const activeCollections = collections.flatMap((collection) => {
+  const products = items.filter((item) => categoryInfo[item.category].collection === collection.id);
+  if (!products.length) return [];
+  return [{ ...collection, image: products.find((item) => item.image)?.image ?? "/nayiru/logo-transparent.png" }];
+});
 ---
 
 <section class="nayiru-home-hero">
@@ -28,7 +33,7 @@ const shop = sitePath("/es/shop/");
   <div class="nayiru-container">
     <header class="nayiru-section-heading"><h2>Colecciones</h2></header>
     <ul class="nayiru-collections">
-      {collections.map(({ id, label, image }) => (
+      {activeCollections.map(({ id, label, image }) => (
         <li>
           <a href={`${shop}?collection=${id}`}>
             <img src={sitePath(image)} width="48" height="48" alt="" loading="lazy" />

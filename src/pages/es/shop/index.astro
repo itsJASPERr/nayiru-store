@@ -10,7 +10,9 @@ const { items, editorial } = await getCatalog();
 const shop = sitePath("/es/shop/");
 const filters = [
   { id: "", label: "Todas las piezas" },
-  ...Object.entries(categoryInfo).map(([id, { label }]) => ({ id, label })),
+  ...Object.entries(categoryInfo)
+    .filter(([id]) => items.some((item) => item.category === id))
+    .map(([id, { label }]) => ({ id, label })),
 ];
 const left = sitePath("/nayiru/catalogo-izquierda.webp");
 const right = sitePath("/nayiru/catalogo-derecha.webp");
@@ -69,7 +71,13 @@ const right = sitePath("/nayiru/catalogo-derecha.webp");
         <a href={shop} data-clear-filters class="nayiru-text-link" hidden>Limpiar filtros</a>
       </div>
 
-      {editorial && items.length > 0 && <p class="nayiru-preview-note">Vista editorial. Las piezas y fotos del boceto se muestran como referencia.</p>}
+      {items.length > 0 && (
+        <p class="nayiru-preview-note">
+          {editorial
+            ? "Vista editorial. Las piezas y fotos del boceto se muestran como referencia."
+            : "Precios en pesos argentinos. Confirma el precio y la disponibilidad por WhatsApp."}
+        </p>
+      )}
       <ProductGrid items={items} filterable />
       <div class="nayiru-empty" data-empty-state hidden={items.length > 0}>
         <h2>{items.length ? "No encontramos piezas" : "Estamos preparando la colección"}</h2>

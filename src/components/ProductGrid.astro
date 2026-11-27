@@ -1,7 +1,7 @@
 ---
 import type { Product } from "../lib/catalog";
 import { categoryInfo } from "../lib/categories";
-import { productPath, sitePath } from "../lib/site";
+import { formatPrice, productPath, sitePath } from "../lib/site";
 
 interface Props {
   items: Product[];
@@ -26,12 +26,20 @@ const { items, filterable = false } = Astro.props;
         data-search={filterable ? search : undefined}
       >
         <a class="nayiru-card" href={sitePath(productPath(item.slug))}>
-          <div class="nayiru-card-photo">
-            <img src={sitePath(item.image)} alt="" loading="lazy" decoding="async" />
+          <div class:list={["nayiru-card-photo", !item.image && "nayiru-photo-missing"]}>
+            {item.image
+              ? <img src={sitePath(item.image)} alt="" loading="lazy" decoding="async" />
+              : <span>Sin fotografía</span>}
           </div>
           <div class="nayiru-card-copy">
             <h3>{item.title}</h3>
             <p class="nayiru-card-category">{category.label}</p>
+            {item.state === "published" && (
+              <p class="nayiru-card-price">
+                {item.price_ars === undefined ? "Consultar precio" : formatPrice(item.price_ars)}
+                {item.sold_out && <span class="nayiru-stock">Sin stock</span>}
+              </p>
+            )}
             <span class="nayiru-card-link">Ver detalles</span>
           </div>
         </a>

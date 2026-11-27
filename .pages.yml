@@ -13,7 +13,7 @@ content:
     filename: "{fields.slug}.json"
     view:
       primary: title
-      fields: [title, category, state]
+      fields: [title, category, price_ars, state]
       search: [title, slug, category]
       sort: [position, title]
       default:
@@ -52,22 +52,33 @@ content:
             - { name: instrumentos, label: Instrumentos }
             - { name: accesorios, label: Accesorios }
             - { name: decoracion, label: Decoración }
+            - { name: conjuntos, label: Conjuntos }
+            - { name: textiles, label: Textiles }
+            - { name: medicinas, label: Medicinas ancestrales }
       - name: description
-        label: Descripción breve
+        label: Descripción
         type: text
         required: true
       - name: story
         label: Historia de la pieza
         type: text
-        required: true
+      - name: price_ars
+        label: Precio (ARS)
+        description: Ingresa el importe en pesos argentinos sin puntos ni símbolos. Deja el campo vacío para mostrar «Consultar precio».
+        type: number
+        options:
+          min: 0
+      - name: sold_out
+        label: Sin stock
+        type: boolean
+        default: false
       - name: image
         label: Fotografía
         type: image
-        required: true
       - name: image_alt
         label: Texto alternativo de la foto
+        description: Obligatorio cuando la pieza tiene una fotografía.
         type: string
-        required: true
       - name: origin
         label: Origen
         type: string

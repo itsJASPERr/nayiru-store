@@ -494,6 +494,15 @@
 }
 
 .nayiru-card-photo { aspect-ratio: 1 / 1.06; }
+.nayiru-photo-missing {
+  display: grid;
+  place-items: center;
+  padding: var(--space-8);
+  background: var(--color-background);
+  color: var(--color-muted);
+  font-size: 0.8125rem;
+  text-align: center;
+}
 .nayiru-card-photo img { transition: transform 0.2s ease; }
 .nayiru-card:hover .nayiru-card-photo img { transform: scale(1.035); }
 
@@ -513,6 +522,23 @@
 }
 
 .nayiru-card-category { color: var(--color-muted); font-size: 0.8125rem; }
+.nayiru-card-price,
+.nayiru-product-price {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-4) var(--space-8);
+  font-size: 0.875rem;
+  font-weight: 650;
+}
+.nayiru-stock {
+  padding: 0 var(--space-4);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-small);
+  color: var(--color-muted);
+  font-size: 0.75rem;
+  font-weight: 500;
+}
 .nayiru-card-link { font-size: 0.8125rem; margin-top: auto; padding-top: var(--space-4); }
 
 .nayiru-catalog .nayiru-card-photo { aspect-ratio: 1 / 1.1; }
@@ -532,6 +558,8 @@
   border-radius: var(--radius-card);
   background: var(--color-surface);
 }
+
+.nayiru-product-without-photo { grid-template-columns: 1fr; }
 
 .nayiru-product-photo {
   aspect-ratio: 4 / 5;
@@ -554,6 +582,7 @@
 }
 
 .nayiru-product-copy .nayiru-preview-note { margin-block: var(--space-16) 0; }
+.nayiru-product-price { margin-top: var(--space-16); font-size: 1.125rem; }
 .nayiru-product-copy .nayiru-button { margin-top: var(--space-24); }
 
 .nayiru-product-story {

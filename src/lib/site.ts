@@ -1,5 +1,10 @@
 const base = import.meta.env.BASE_URL.replace(/\/$/, "");
 const whatsappNumber = "543536569598";
+const ars = new Intl.NumberFormat("es-AR");
+
+export function formatPrice(amount: number) {
+  return `${ars.format(amount)} ARS`;
+}
 
 export function sitePath(path = "/") {
   return `${base}${path}`;
