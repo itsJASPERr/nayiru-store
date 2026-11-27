@@ -1,8 +1,7 @@
 import { defineConfig } from "astro/config";
 
 export default defineConfig({
-  site: "https://itsjasperr.github.io",
-  base: "/nayiru-store",
+  site: "https://nayiru.life",
   trailingSlash: "always",
   output: "static",
 });

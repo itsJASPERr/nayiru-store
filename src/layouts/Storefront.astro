@@ -77,8 +77,7 @@ const currentLink = (href: string) => {
     <header class="nayiru-header">
       <div class="nayiru-container nayiru-header-inner">
         <a class="nayiru-brand" href={home} aria-label="NAYIRU, inicio">
-          <BrandLogo />
-          <span class="nayiru-brandline">Artesanía y cultura viva</span>
+          <BrandLogo transparent />
         </a>
         <nav class="nayiru-nav" aria-label="Navegación principal">
           {navigation.map(({ href, label }) => <a href={href} aria-current={currentLink(href)}>{label}</a>)}

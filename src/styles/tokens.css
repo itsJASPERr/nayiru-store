@@ -6,6 +6,7 @@
   --color-text: #24332B;
   --color-muted: #706B60;
   --color-border: #DED5C4;
+  --color-masthead: color-mix(in srgb, var(--color-primary) 48%, black);
 
   --font-editorial: "Cinzel Variable", Georgia, serif;
   --font-story: "Cormorant Garamond Variable", Georgia, serif;

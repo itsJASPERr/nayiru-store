@@ -4,11 +4,14 @@ import { sitePath } from "../lib/site";
 interface Props {
   class?: string;
   lazy?: boolean;
+  transparent?: boolean;
 }
 
-const { class: className, lazy = false } = Astro.props;
+const { class: className, lazy = false, transparent = false } = Astro.props;
+const file = transparent ? "logo-transparent.png" : "logo.jpg";
+const size = transparent ? 900 : 1080;
 ---
 
 <span class:list={["nayiru-logo", className]}>
-  <img src={sitePath("/nayiru/logo.jpg")} width="1080" height="1080" alt="NAYIRU" loading={lazy ? "lazy" : undefined} decoding="async" />
+  <img src={sitePath(`/nayiru/${file}`)} width={size} height={size} alt="NAYIRU" loading={lazy ? "lazy" : undefined} decoding="async" />
 </span>

@@ -14,7 +14,7 @@ npm run build
 npm run preview
 ```
 
-En desarrollo, abre `http://localhost:4321/nayiru-store/`. El resultado de producción se escribe en `dist/`.
+En desarrollo, abre `http://localhost:4321/`. El resultado de producción se escribe en `dist/`.
 
 ## Editar piezas en Pages CMS
 
@@ -25,8 +25,8 @@ En desarrollo, abre `http://localhost:4321/nayiru-store/`. El resultado de produ
 
 ## GitHub Pages
 
-El sitio usa la ruta de proyecto `/nayiru-store/`. Cuando GitHub Pages esté disponible para el repositorio, configura **Settings → Pages → Source → GitHub Actions** y habilita Actions. El workflow **GitHub Pages** valida y construye el sitio con cada cambio en `main`, incluidos los guardados en Pages CMS. El despliegue publica el contenido de `dist/`.
+El sitio se publica en la raíz de [nayiru.life](https://nayiru.life/). El workflow **GitHub Pages** valida y construye el sitio con cada cambio en `main`, incluidos los guardados en Pages CMS. El despliegue publica el contenido de `dist/`.
 
 GitHub Pages requiere un plan compatible para un repositorio privado. El sitio publicado en GitHub Pages es público. El repositorio puede conservar su visibilidad privada con un plan compatible. [Documentación de GitHub Pages](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site)
 
-El mapa del sitio reúne la portada, el catálogo y las fichas visibles. [Sitemap XML](https://itsjasperr.github.io/nayiru-store/sitemap.xml)
+El mapa del sitio reúne la portada, el catálogo y las fichas visibles. [Sitemap XML](https://nayiru.life/sitemap.xml)
