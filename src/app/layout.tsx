@@ -1,39 +1,22 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Inter } from "next/font/google";
+import "@fontsource-variable/inter";
+import "@fontsource-variable/cinzel";
+import "@fontsource-variable/cormorant-garamond";
+import "@fontsource-variable/cormorant-garamond/wght-italic.css";
 import "./globals.css";
 
-const inter = Inter({
-  variable: "--font-inter",
-  subsets: ["latin"],
-  display: "swap",
-});
-
-const cormorant = Cormorant_Garamond({
-  variable: "--font-cormorant",
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  display: "swap",
-});
-
 export const metadata: Metadata = {
-  title: {
-    default: "Pueblo Mágico",
-    template: "%s · Pueblo Mágico",
-  },
+  title: { default: "NAYIRU", template: "%s · NAYIRU" },
   description:
-    "Conscious products inspired by the mountains, community, and regenerative living.",
+    "Artesanía, memoria y cultura viva. Explora las colecciones de NAYIRU.",
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className={`${inter.variable} ${cormorant.variable} antialiased`}>
-        {children}
-      </body>
+    <html lang="es" data-scroll-behavior="smooth">
+      <body className="antialiased">{children}</body>
     </html>
   );
 }

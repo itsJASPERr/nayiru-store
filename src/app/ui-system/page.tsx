@@ -25,7 +25,7 @@ export default function UiSystemPage() {
     <>
       <DocsPageHeader
         eyebrow="Design system"
-        title="Pueblo Mágico UI"
+        title="NAYIRU UI"
         description="Living reference for layout, typography, forms, and commerce components used across the multilingual shop."
       />
 
