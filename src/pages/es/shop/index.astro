@@ -4,6 +4,7 @@ import SearchIcon from "../../../components/SearchIcon.astro";
 import Storefront from "../../../layouts/Storefront.astro";
 import { getCatalog } from "../../../lib/catalog";
 import { categoryInfo } from "../../../lib/categories";
+import { emberaStoryPath } from "../../../lib/embera";
 import { sitePath } from "../../../lib/site";
 
 const { items, editorial } = await getCatalog();
@@ -46,6 +47,7 @@ const right = sitePath("/nayiru/catalogo-derecha.webp");
           >{label}</a>
         ))}
       </nav>
+      <a class="nayiru-text-link nayiru-context-link" href={sitePath(emberaStoryPath)}>Origen y símbolos de los tejidos Embéra</a>
     </aside>
 
     <section class="nayiru-results" aria-labelledby="resultados">

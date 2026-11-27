@@ -1,0 +1,93 @@
+---
+import ProductGrid from "../../components/ProductGrid.astro";
+import Storefront from "../../layouts/Storefront.astro";
+import { getCatalog } from "../../lib/catalog";
+import { emberaProductSlugs, emberaStoryPath } from "../../lib/embera";
+import { sitePath, siteUrl } from "../../lib/site";
+
+const title = "Tejidos Embéra y Kamëntsa";
+const description = "Lo que NAYIRU aprendió de familias Embéra y Kamëntsa en Colombia sobre la memoria, la espiritualidad y los símbolos que guardan sus tejidos.";
+const photo = "/nayiru/embera/mesa-de-tejidos.webp";
+const photoAlt = "Mesa con collares, pulseras y otras piezas elaboradas en mostacillas";
+const media = sitePath("/nayiru/embera/");
+const { items } = await getCatalog();
+const pieces = items.filter(({ slug }) => emberaProductSlugs.has(slug));
+const source = "https://maravillososxv.my.canva.site/nayiru/info-embra";
+---
+
+<Storefront
+  title={`${title} · NAYIRU`}
+  description={description}
+  canonicalPath={emberaStoryPath}
+  socialImage={{ path: photo, alt: photoAlt }}
+  structuredData={{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: title,
+    description,
+    url: siteUrl(emberaStoryPath),
+    image: siteUrl(photo),
+    inLanguage: "es",
+    author: { "@type": "Organization", name: "NAYIRU", url: siteUrl() },
+  }}
+>
+  <article class="nayiru-container nayiru-heritage">
+    <a class="nayiru-text-link nayiru-back" href={sitePath("/es/shop/")}>Volver a la tienda</a>
+    <header class="nayiru-heritage-header">
+      <div>
+        <h1>{title}</h1>
+        <p>Formas, colores y patrones guardan historias y transmiten memoria de una generación a otra.</p>
+      </div>
+      <img src={sitePath(photo)} alt={photoAlt} width="800" height="600" fetchpriority="high" />
+    </header>
+
+    <section class="nayiru-heritage-section">
+      <h2>Origen de los tejidos</h2>
+      <p>Los tejidos que conocimos en Colombia vienen de comunidades originarias, entre ellas los pueblos Kamëntsa y Embéra. En sus piezas encontramos una forma de expresar su historia, su sentir y su manera de habitar el mundo.</p>
+    </section>
+
+    <section class="nayiru-heritage-section">
+      <h2>Un aprendizaje compartido</h2>
+      <p>Durante nuestro viaje, algunas familias nos recibieron y compartieron lo que el tejido significa para ellas. Aprendimos a leer sus formas, colores y patrones como un lenguaje que lleva recuerdos y mensajes. Recordamos ese encuentro con gratitud y con la responsabilidad de reconocer a quienes nos enseñaron.</p>
+    </section>
+
+    <section class="nayiru-heritage-section">
+      <h2>Simbología y espiritualidad</h2>
+      <p>En los tejidos que nos mostraron, los motivos enlazan el mundo material con el espiritual. Cada pieza expresa significados propios. El relato original de NAYIRU recoge estos dos ejemplos.</p>
+      <div class="nayiru-heritage-symbols">
+        <figure>
+          <img src={`${media}generacion-familia.webp`} width="702" height="158" alt="Tejido alargado con rombos y figuras en varios colores" loading="lazy" decoding="async" />
+          <figcaption>La generación de la familia</figcaption>
+        </figure>
+        <figure>
+          <img src={`${media}rana-fertilidad.webp`} width="206" height="463" alt="Tejido en mostacillas azules, verdes, amarillas y naranjas" loading="lazy" decoding="async" />
+          <figcaption>La rana y la fertilidad</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="nayiru-heritage-section nayiru-heritage-making">
+      <div>
+        <h2>El tejido como expresión</h2>
+        <p>Cuando tejemos por encargo en NAYIRU, el vínculo con quien recibirá la pieza acompaña el proceso. Así nacen pulseras, collares, aros y anillos que llevan algo de ese encuentro.</p>
+      </div>
+      <figure>
+        <img src={`${media}aros-mandala.webp`} width="319" height="404" alt="Aros mandala en mostacillas azules y verdes con flecos" loading="lazy" decoding="async" />
+        <figcaption>Aros mandala de tejido propio de NAYIRU</figcaption>
+      </figure>
+    </section>
+
+    <section class="nayiru-heritage-section">
+      <h2>Memoria y respeto</h2>
+      <p>Nos acercamos a estas comunidades como visitantes y aprendices. En el relato original, el colibrí representa nuestro papel de mensajeros. Compartir lo aprendido implica cuidar su procedencia, reconocer a quienes sostienen esta tradición y evitar la apropiación cultural.</p>
+      <p class="nayiru-heritage-source">Texto adaptado de la <a class="nayiru-text-link" href={source}>página original de NAYIRU</a>.</p>
+    </section>
+
+    {pieces.length > 0 && (
+      <section class="nayiru-heritage-section nayiru-heritage-pieces">
+        <h2>Artesanía Embéra en la tienda</h2>
+        <ProductGrid items={pieces} />
+      </section>
+    )}
+  </article>
+</Storefront>

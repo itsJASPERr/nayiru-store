@@ -4,6 +4,7 @@ import ProductGrid from "../../../components/ProductGrid.astro";
 import Storefront from "../../../layouts/Storefront.astro";
 import { getCatalog, relatedProducts } from "../../../lib/catalog";
 import { categoryInfo } from "../../../lib/categories";
+import { emberaProductSlugs, emberaStoryPath } from "../../../lib/embera";
 import { formatPrice, productPath, sitePath, siteUrl, whatsappHref } from "../../../lib/site";
 
 export const getStaticPaths = (async () => {
@@ -69,6 +70,9 @@ const breadcrumb = {
               </dl>
             )}
           </section>
+        )}
+        {emberaProductSlugs.has(item.slug) && (
+          <a class="nayiru-text-link nayiru-context-link" href={sitePath(emberaStoryPath)}>Leer sobre los tejidos Embéra</a>
         )}
       </div>
     </article>
