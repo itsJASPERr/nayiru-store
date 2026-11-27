@@ -1,0 +1,38 @@
+---
+import Amphora from "../assets/catalog-icons/amphora.svg";
+import CircleDashed from "../assets/catalog-icons/circle-dashed.svg";
+import Droplet from "../assets/catalog-icons/droplet.svg";
+import Drum from "../assets/catalog-icons/drum.svg";
+import Gem from "../assets/catalog-icons/gem.svg";
+import Handbag from "../assets/catalog-icons/handbag.svg";
+import Layers from "../assets/catalog-icons/layers.svg";
+import LayoutGrid from "../assets/catalog-icons/layout-grid.svg";
+import Leaf from "../assets/catalog-icons/leaf.svg";
+import Link from "../assets/catalog-icons/link.svg";
+import Spool from "../assets/catalog-icons/spool.svg";
+import type { Category } from "../lib/categories";
+
+interface Props {
+  category: Category | "";
+}
+
+// Lucide outline assets from commit 4bf621064bed45d114ba31435b85760513830d1c.
+// The upstream license ships at /licenses/lucide.txt.
+const categoryIcons = {
+  "": LayoutGrid,
+  pulseras: CircleDashed,
+  collares: Link,
+  aretes: Droplet,
+  anillos: Gem,
+  instrumentos: Drum,
+  accesorios: Handbag,
+  decoracion: Amphora,
+  conjuntos: Layers,
+  textiles: Spool,
+  medicinas: Leaf,
+};
+
+const Icon = categoryIcons[Astro.props.category];
+---
+
+<Icon class="nayiru-filter-icon" aria-hidden="true" focusable="false" />
