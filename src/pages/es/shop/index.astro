@@ -1,19 +1,19 @@
 ---
+import CatalogCategoryIcon from "../../../components/CatalogCategoryIcon.astro";
 import ProductGrid from "../../../components/ProductGrid.astro";
 import SearchIcon from "../../../components/SearchIcon.astro";
 import Storefront from "../../../layouts/Storefront.astro";
 import { getCatalog } from "../../../lib/catalog";
-import { categoryInfo } from "../../../lib/categories";
+import { categoryIds, categoryInfo } from "../../../lib/categories";
 import { emberaStoryPath } from "../../../lib/embera";
 import { sitePath } from "../../../lib/site";
 
 const { items, editorial } = await getCatalog();
 const shop = sitePath("/es/shop/");
+const activeCategories = new Set(items.map(({ category }) => category));
 const filters = [
-  { id: "", label: "Todas las piezas" },
-  ...Object.entries(categoryInfo)
-    .filter(([id]) => items.some((item) => item.category === id))
-    .map(([id, { label }]) => ({ id, label })),
+  { id: "" as const, label: "Todas las piezas" },
+  ...categoryIds.filter((id) => activeCategories.has(id)).map((id) => ({ id, label: categoryInfo[id].label })),
 ];
 const left = sitePath("/nayiru/catalogo-izquierda.webp");
 const right = sitePath("/nayiru/catalogo-derecha.webp");
@@ -35,6 +35,17 @@ const right = sitePath("/nayiru/catalogo-derecha.webp");
     </div>
   </section>
 
+  <div class="nayiru-container nayiru-catalog-story-wrap">
+    <a class="nayiru-catalog-story" href={sitePath(emberaStoryPath)} aria-labelledby="embera-story-title">
+      <img src={sitePath("/nayiru/embera/mesa-de-tejidos.webp")} width="800" height="600" alt="" decoding="async" />
+      <div>
+        <h2 id="embera-story-title">Tejidos Embéra y Kamëntsa</h2>
+        <p>Conocé los símbolos de los tejidos y lo que NAYIRU aprendió de las familias que los crean.</p>
+      </div>
+      <span class="nayiru-text-link nayiru-catalog-story-action" aria-hidden="true">Leer la historia <span>→</span></span>
+    </a>
+  </div>
+
   <div class="nayiru-container nayiru-catalog" data-catalog>
     <aside class="nayiru-catalog-sidebar">
       <h2>Categorías</h2>
@@ -44,10 +55,12 @@ const right = sitePath("/nayiru/catalogo-derecha.webp");
             data-filter={id}
             href={id ? `${shop}?collection=${id}` : shop}
             aria-current={id ? undefined : "true"}
-          >{label}</a>
+          >
+            <CatalogCategoryIcon category={id} />
+            <span>{label}</span>
+          </a>
         ))}
       </nav>
-      <a class="nayiru-text-link nayiru-context-link" href={sitePath(emberaStoryPath)}>Origen y símbolos de los tejidos Embéra</a>
     </aside>
 
     <section class="nayiru-results" aria-labelledby="resultados">
