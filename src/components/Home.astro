@@ -1,4 +1,5 @@
 ---
+import BrandLogo from "./BrandLogo.astro";
 import ProductGrid from "./ProductGrid.astro";
 import { getCatalog } from "../lib/catalog";
 import { collections } from "../lib/categories";
@@ -30,7 +31,7 @@ const shop = sitePath("/es/shop/");
       {collections.map(({ id, label, image }) => (
         <li>
           <a href={`${shop}?collection=${id}`}>
-            <img src={sitePath(image)} width="60" height="60" alt="" loading="lazy" />
+            <img src={sitePath(image)} width="48" height="48" alt="" loading="lazy" />
             <span>{label}</span>
           </a>
         </li>
@@ -61,6 +62,6 @@ const shop = sitePath("/es/shop/");
       <p>Una cuenta, un hilo, una veta. En cada pieza quedan huellas de la mano que la hizo. NAYIRU reúne artesanía y relatos para mirar de cerca esos detalles y acercarnos a los saberes que pasan de mano en mano.</p>
       <a class="nayiru-text-link" href={whatsappHref()}>Escríbenos por WhatsApp</a>
     </div>
-    <img src={sitePath("/nayiru/logo-claro.webp")} width="238" height="276" alt="NAYIRU, sol y montañas" loading="lazy" />
+    <BrandLogo class="nayiru-about-logo" lazy />
   </div>
 </section>

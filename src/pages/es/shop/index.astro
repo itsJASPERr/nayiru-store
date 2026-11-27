@@ -16,13 +16,17 @@ const left = sitePath("/nayiru/catalogo-izquierda.webp");
 const right = sitePath("/nayiru/catalogo-derecha.webp");
 ---
 
-<Storefront title="Colección NAYIRU">
+<Storefront
+  title="Colección artesanal · NAYIRU"
+  description="Explora la colección artesanal de NAYIRU. Encuentra pulseras, collares, aretes, instrumentos, accesorios y decoración."
+  canonicalPath="/es/shop/"
+>
   <section
     class="nayiru-catalog-hero"
     style={`--nayiru-catalog-left: url('${left}'); --nayiru-catalog-right: url('${right}');`}
   >
     <div class="nayiru-container">
-      <div class="nayiru-ornament" aria-hidden="true"><span></span></div>
+      <span class="nayiru-accent-rule" aria-hidden="true"></span>
       <h1 data-catalog-title>Colección NAYIRU</h1>
       <p>Artesanía inspirada en la naturaleza y la sabiduría ancestral.</p>
     </div>

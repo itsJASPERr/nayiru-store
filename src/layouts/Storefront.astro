@@ -1,26 +1,52 @@
 ---
+import BrandLogo from "../components/BrandLogo.astro";
 import SearchIcon from "../components/SearchIcon.astro";
-import { sitePath, whatsappHref } from "../lib/site";
+import { sitePath, siteUrl, whatsappHref } from "../lib/site";
 import "../styles/base.css";
 
 interface Props {
   title?: string;
   description?: string;
+  canonicalPath?: string;
+  socialImage?: { path: string; alt: string };
+  structuredData?: Record<string, unknown>;
+  noIndex?: boolean;
 }
 
 const {
-  title = "NAYIRU",
-  description = "Artesanía, memoria y cultura viva. Explora las colecciones de NAYIRU.",
+  title = "NAYIRU · Artesanía y cultura viva",
+  description = "Explora las colecciones de artesanía de NAYIRU. Descubre joyería, instrumentos, accesorios y las historias detrás de cada pieza.",
+  canonicalPath = "/",
+  socialImage = { path: "/nayiru/logo.jpg", alt: "Logotipo de NAYIRU" },
+  structuredData,
+  noIndex = false,
 } = Astro.props;
 const home = sitePath("/");
 const shop = sitePath("/es/shop/");
 const contact = whatsappHref();
+const admin = "https://app.pagescms.org/itsJASPERr/nayiru-store/main/collection/products";
+const canonical = siteUrl(canonicalPath);
+const shareImage = siteUrl(socialImage.path);
+const pageSchema = structuredData ?? (canonicalPath === "/" ? {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "NAYIRU",
+  url: canonical,
+  inLanguage: "es",
+} : undefined);
+const schemaJson = pageSchema && JSON.stringify(pageSchema).replace(/</g, "\\u003c");
 const navigation = [
   { href: home, label: "Inicio" },
   { href: shop, label: "Tienda" },
   { href: `${home}#colecciones`, label: "Colecciones" },
   { href: `${home}#sobre-nayiru`, label: "Sobre NAYIRU" },
 ];
+const currentPath = Astro.url.pathname;
+const currentLink = (href: string) => {
+  if (href === currentPath || (href === home && currentPath === sitePath("/es/"))) return "page";
+  if (href === shop && currentPath.startsWith(shop)) return "location";
+  return undefined;
+};
 ---
 
 <!doctype html>
@@ -29,23 +55,33 @@ const navigation = [
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
-    <meta name="theme-color" content="#1c2a25" />
-    <link rel="icon" href={sitePath("/icon.png")} type="image/png" />
+    <link rel="icon" href={sitePath("/nayiru/logo.jpg")} type="image/jpeg" />
     <title>{title}</title>
+    {noIndex ? <meta name="robots" content="noindex" /> : (
+      <>
+        <link rel="canonical" href={canonical} />
+        <meta property="og:site_name" content="NAYIRU" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
+        <meta property="og:url" content={canonical} />
+        <meta property="og:image" content={shareImage} />
+        <meta property="og:image:alt" content={socialImage.alt} />
+        <meta name="twitter:card" content="summary" />
+        {schemaJson && <script is:inline type="application/ld+json" set:html={schemaJson}></script>}
+      </>
+    )}
   </head>
   <body class="nayiru-site">
     <a href="#contenido" class="nayiru-skip">Saltar al contenido</a>
     <header class="nayiru-header">
       <div class="nayiru-container nayiru-header-inner">
         <a class="nayiru-brand" href={home} aria-label="NAYIRU, inicio">
-          <img class="nayiru-mark" src={sitePath("/nayiru/simbolo-oscuro.webp")} width="42" height="44" alt="" />
-          <span>
-            <span class="nayiru-wordmark">NAYIRU</span>
-            <span class="nayiru-brandline">Artesanía y cultura viva</span>
-          </span>
+          <BrandLogo />
+          <span class="nayiru-brandline">Artesanía y cultura viva</span>
         </a>
         <nav class="nayiru-nav" aria-label="Navegación principal">
-          {navigation.map(({ href, label }) => <a href={href}>{label}</a>)}
+          {navigation.map(({ href, label }) => <a href={href} aria-current={currentLink(href)}>{label}</a>)}
           <a class="nayiru-nav-contact" href={contact}>Contacto</a>
         </nav>
         <div class="nayiru-header-actions">
@@ -55,11 +91,11 @@ const navigation = [
           <details class="nayiru-menu">
             <summary>
               <span class="sr-only">Menú</span>
-              <span aria-hidden="true"></span>
+              <span class="nayiru-menu-icon" aria-hidden="true"></span>
             </summary>
             <nav aria-label="Navegación móvil">
-              {navigation.map(({ href, label }) => <a href={href}>{label}</a>)}
-              <a href={contact}>Contacto</a>
+              {navigation.map(({ href, label }) => <a href={href} aria-current={currentLink(href)}>{label}</a>)}
+              <a class="nayiru-nav-contact" href={contact}>Contacto</a>
             </nav>
           </details>
         </div>
@@ -70,10 +106,11 @@ const navigation = [
 
     <footer class="nayiru-footer">
       <div class="nayiru-container nayiru-footer-inner">
-        <img class="nayiru-mark" src={sitePath("/nayiru/logo-oscuro.webp")} width="62" height="72" alt="NAYIRU" loading="lazy" />
+        <a href={home} aria-label="NAYIRU, volver al inicio"><BrandLogo lazy /></a>
         <nav aria-label="Pie de página">
           {navigation.slice(1).map(({ href, label }) => <a href={href}>{label}</a>)}
-          <a href={contact}>WhatsApp</a>
+          <a class="nayiru-nav-contact" href={contact}>WhatsApp</a>
+          <a href={admin} target="_blank" rel="noopener noreferrer nofollow">Administrar catálogo</a>
         </nav>
         <small>© {new Date().getFullYear()} NAYIRU</small>
       </div>

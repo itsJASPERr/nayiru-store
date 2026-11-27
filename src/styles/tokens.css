@@ -1,0 +1,36 @@
+:root {
+  --color-primary: #1C2A25;
+  --color-accent: #C8A24A;
+  --color-background: #F4EDDF;
+  --color-surface: #FAF7F0;
+  --color-text: #24332B;
+  --color-muted: #706B60;
+  --color-border: #DED5C4;
+
+  --font-editorial: "Cinzel Variable", Georgia, serif;
+  --font-story: "Cormorant Garamond Variable", Georgia, serif;
+  --font-ui: "Inter Variable", system-ui, sans-serif;
+
+  --space-4: 4px;
+  --space-8: 8px;
+  --space-12: 12px;
+  --space-16: 16px;
+  --space-24: 24px;
+  --space-32: 32px;
+  --space-48: 48px;
+  --space-64: 64px;
+  --space-96: 96px;
+
+  --radius-small: 4px;
+  --radius-card: 8px;
+  --page-gutter: var(--space-24);
+  --section-space: var(--space-64);
+  --focus-ring: var(--color-text);
+}
+
+@media (max-width: 680px) {
+  :root {
+    --page-gutter: var(--space-16);
+    --section-space: var(--space-48);
+  }
+}

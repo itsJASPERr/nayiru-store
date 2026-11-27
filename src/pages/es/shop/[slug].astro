@@ -4,7 +4,7 @@ import ProductGrid from "../../../components/ProductGrid.astro";
 import Storefront from "../../../layouts/Storefront.astro";
 import { getCatalog, relatedProducts } from "../../../lib/catalog";
 import { categoryInfo } from "../../../lib/categories";
-import { sitePath, whatsappHref } from "../../../lib/site";
+import { productPath, sitePath, siteUrl, whatsappHref } from "../../../lib/site";
 
 export const getStaticPaths = (async () => {
   const { items } = await getCatalog();
@@ -16,9 +16,25 @@ export const getStaticPaths = (async () => {
 
 const { item, related } = Astro.props;
 const editorial = item.state === "editorial";
+const canonicalPath = productPath(item.slug);
+const breadcrumb = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "NAYIRU", item: siteUrl() },
+    { "@type": "ListItem", position: 2, name: "Tienda", item: siteUrl("/es/shop/") },
+    { "@type": "ListItem", position: 3, name: item.title, item: siteUrl(canonicalPath) },
+  ],
+};
 ---
 
-<Storefront title={`${item.title} · NAYIRU`} description={item.description}>
+<Storefront
+  title={`${item.title} · NAYIRU`}
+  description={item.description}
+  canonicalPath={canonicalPath}
+  socialImage={{ path: item.image, alt: item.image_alt }}
+  structuredData={breadcrumb}
+>
   <div class="nayiru-container nayiru-product">
     <a class="nayiru-text-link nayiru-back" href={sitePath("/es/shop/")}>Volver a la tienda</a>
     <article class="nayiru-product-layout">
