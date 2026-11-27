@@ -1,9 +1,7 @@
-import { NextIntlClientProvider, hasLocale } from "next-intl";
-import { getMessages, setRequestLocale } from "next-intl/server";
+import { hasLocale } from "next-intl";
+import { setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
-import { Footer } from "@/components/layout/Footer";
-import { Header } from "@/components/layout/Header";
-import { CartDrawer, CartProvider } from "@/features/cart";
+import { StorefrontShell } from "@/features/nayiru/storefront-shell";
 import { routing } from "@/i18n/routing";
 
 type Props = {
@@ -12,29 +10,13 @@ type Props = {
 };
 
 export function generateStaticParams() {
-  return routing.locales.map((locale) => ({ locale }));
+  return [{ locale: routing.defaultLocale }];
 }
 
 export default async function LocaleLayout({ children, params }: Props) {
   const { locale } = await params;
-
-  if (!hasLocale(routing.locales, locale)) {
-    notFound();
-  }
-
+  if (!hasLocale(routing.locales, locale)) notFound();
   setRequestLocale(locale);
-  const messages = await getMessages();
 
-  return (
-    <NextIntlClientProvider messages={messages}>
-      <CartProvider>
-        <div className="flex min-h-screen flex-col">
-          <Header />
-          <div className="flex-1">{children}</div>
-          <Footer />
-        </div>
-        <CartDrawer />
-      </CartProvider>
-    </NextIntlClientProvider>
-  );
+  return <StorefrontShell>{children}</StorefrontShell>;
 }

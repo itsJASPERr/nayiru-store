@@ -1,48 +1,10 @@
-# Pueblo Mágico documentation
+# Arquitectura heredada
 
-Project docs for engineers and content/commerce operators.
+La [guía del storefront NAYIRU](../README.md) describe el catálogo local, la configuración de contacto y las rutas activas. Las guías siguientes documentan la implementación de origen para futuras integraciones activadas expresamente.
 
-| Audience | Guide | Description |
-| --- | --- | --- |
-| Developers | [Commerce developer guide](./commerce/developer.md) | Architecture, env setup, API usage, provider swapping |
-| Developers | [Payload Ecommerce provider](./commerce/payload-ecommerce.md) | Self-hosted Payload adapter, env, carts, monorepo CMS |
-| Developers | [CMS content developer guide](./cms/developer.md) | Homepage/pages via `@/lib/cms`, blocks, fallback, caching |
-| Developers | [Checkout developer guide](./checkout/developer.md) | Provider-agnostic checkout, Mercado Pago, HTTP API |
-| Operators | [Checkout operations guide](./checkout/operations.md) | MP credentials, sandbox, webhooks, go-live |
-| Content / merchandising | [Shopify content guide](./commerce/content.md) | Products & collections in Shopify |
-| Content / merchandising | [Payload catalog guide](./commerce/payload-content.md) | Products & categories in `apps/cms` |
-| Content / editors | [CMS homepage & pages guide](./cms/content.md) | Build the home page with layout blocks (EN/ES) |
-| Developers / DevOps | [Staging and production deployment](./deploy/github-actions.md) | Complete GCP, GitHub Environments, TLS, release, and rollback runbook |
-| Developers / DevOps | [GCE VM runtime reference](./deploy/gce.md) | Artifact-only Docker, nginx, Postgres, and persistent-state layout |
-| Developers / DevOps | [`apps/cms` README](../apps/cms/README.md) | Run Payload + Postgres locally, import map, and CMS development |
-
-Related:
-
-- Product roadmap / build plan: [`COMMAND.md`](../COMMAND.md)
-- Environment template: [`.env.example`](../.env.example)
-- Design system preview: `/ui-system` when the storefront is running
-
-## Monorepo at a glance
-
-| Path | Role | Port |
-| --- | --- | --- |
-| `/` | Next.js storefront | `3000` |
-| `apps/cms` | Payload CMS + Ecommerce | `4000` |
-| Postgres (CMS compose) | Database | `5433` |
-
-```bash
-npm run dev          # storefront
-npm run db:cms:up    # CMS database
-npm run dev:cms      # CMS admin + API
-```
-
-## Content vs commerce vs checkout (quick map)
-
-| Need | System | Docs |
-| --- | --- | --- |
-| Homepage sections, stories, FAQs | Payload **Pages** + blocks | [cms/content.md](./cms/content.md) |
-| Products, carts | `@/lib/commerce` | [commerce/developer.md](./commerce/developer.md) |
-| Edit products in admin | Shopify or `apps/cms` shop | [commerce/content.md](./commerce/content.md) / [payload-content.md](./commerce/payload-content.md) |
-| Pay with Mercado Pago (Payload carts) | `@/lib/checkout` + MP token in `.env.local` | [checkout/operations.md](./checkout/operations.md) |
-| Pay with Shopify Checkout | `CHECKOUT_PROVIDER=commerce-redirect` | [checkout/developer.md](./checkout/developer.md) |
-| Deploy shop + CMS to staging or production | GitHub Actions | [deploy/github-actions.md](./deploy/github-actions.md) |
+| Área | Guías de referencia |
+| --- | --- |
+| Componentes | Vista de diseño en `/ui-system` |
+| CMS | [Aplicación Payload](../apps/cms/README.md), [desarrollo](./cms/developer.md), [edición](./cms/content.md) |
+| Comercio | [Adaptadores](./commerce/developer.md), [Payload Ecommerce](./commerce/payload-ecommerce.md) |
+| Pagos | [Adaptador de checkout](./checkout/developer.md), [operaciones](./checkout/operations.md) |

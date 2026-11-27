@@ -5,6 +5,7 @@ import { defaultLocale, locales } from "@/config/navigation";
 export const routing = defineRouting({
   locales: [...locales],
   defaultLocale,
+  localeDetection: false,
   localePrefix: "always",
 });
 

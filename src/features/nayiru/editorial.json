@@ -1,0 +1,98 @@
+[
+  {
+    "handle": "pulsera-jaguar",
+    "title": "Pulsera Jaguar",
+    "category": "pulseras",
+    "description": "Una banda de cuentas oscuras con un motivo geométrico en tonos claros y dorados.",
+    "story": "En la imagen, el dibujo recorre la banda y cambia según se la mire. Las cuentas claras marcan el ritmo sobre un fondo oscuro.",
+    "tags": ["mostacillas", "geometría"],
+    "image": {
+      "src": "/nayiru/pulsera-jaguar.webp",
+      "alt": "Una banda de cuentas oscuras con un motivo geométrico en tonos claros y dorados."
+    }
+  },
+  {
+    "handle": "aretes-kumbaya",
+    "title": "Aretes Kumbaya",
+    "category": "aretes",
+    "description": "Rombos de cuentas rojas y claras con flecos alargados.",
+    "story": "La repetición de los rombos une cada par. Los flecos prolongan el dibujo y acompañan el movimiento de la pieza.",
+    "tags": ["mostacillas", "flecos"],
+    "image": {
+      "src": "/nayiru/aretes-kumbaya.webp",
+      "alt": "Rombos de cuentas rojas y claras con flecos alargados."
+    }
+  },
+  {
+    "handle": "collar-proteccion",
+    "title": "Collar Protección",
+    "category": "collares",
+    "description": "Un dije de piedra ovalada enmarcado por un tejido oscuro.",
+    "story": "El entramado rodea la piedra y deja a la vista sus reflejos. La fotografía destaca el contraste entre la superficie lisa del dije y la textura del cordón.",
+    "tags": ["piedra", "tejido"],
+    "image": {
+      "src": "/nayiru/collar-proteccion.webp",
+      "alt": "Un dije de piedra ovalada enmarcado por un tejido oscuro."
+    }
+  },
+  {
+    "handle": "anillo-tepuy",
+    "title": "Anillo Tepuy",
+    "category": "anillos",
+    "description": "Una banda ancha de cuentas negras, blancas y rojas.",
+    "story": "Visto de cerca, el patrón se forma hilera por hilera. El rojo aparece entre líneas blancas sobre el fondo negro.",
+    "tags": ["mostacillas", "geometría"],
+    "image": {
+      "src": "/nayiru/anillo-tepuy.webp",
+      "alt": "Una banda ancha de cuentas negras, blancas y rojas."
+    }
+  },
+  {
+    "handle": "maraca-tradicional",
+    "title": "Maraca Tradicional",
+    "category": "instrumentos",
+    "description": "Una maraca de mango de madera con detalles tejidos.",
+    "story": "La fotografía reúne la madera lisa del mango y la trama del cuerpo. La forma invita a detenerse en cómo se sostiene el instrumento.",
+    "tags": ["madera", "tejido"],
+    "image": {
+      "src": "/nayiru/maraca-tradicional.webp",
+      "alt": "Una maraca de mango de madera con detalles tejidos."
+    }
+  },
+  {
+    "handle": "tambor-ceremonial",
+    "title": "Tambor Ceremonial",
+    "category": "instrumentos",
+    "description": "Un cuerpo de madera con parche claro y cuerdas de tensión visibles.",
+    "story": "Las cuerdas recorren el cuerpo del tambor y mantienen el parche en su lugar. La imagen muestra ese encuentro entre madera, parche y tensión.",
+    "tags": ["madera", "parche", "cuerdas"],
+    "image": {
+      "src": "/nayiru/tambor-ceremonial.webp",
+      "alt": "Un cuerpo de madera con parche claro y cuerdas de tensión visibles."
+    }
+  },
+  {
+    "handle": "bolso-putumayo",
+    "title": "Bolso Putumayo",
+    "category": "accesorios",
+    "description": "Un bolso tejido con rombos y flecos en tonos tierra.",
+    "story": "Los rombos se repiten en el centro del tejido y los flecos enmarcan los bordes. La fotografía permite seguir el recorrido de los hilos y el cambio de tonos.",
+    "tags": ["tejido", "flecos"],
+    "image": {
+      "src": "/nayiru/bolso-putumayo.webp",
+      "alt": "Un bolso tejido con rombos y flecos en tonos tierra."
+    }
+  },
+  {
+    "handle": "porta-sahumerio",
+    "title": "Porta Sahumerio",
+    "category": "decoracion",
+    "description": "Un cuenco oscuro en una composición con madera, cerámica y humo.",
+    "story": "La composición deja ver el cuenco entre distintas superficies y tonos de tierra. El humo dirige la mirada hacia el centro de la imagen.",
+    "tags": ["cuenco", "cerámica"],
+    "image": {
+      "src": "/nayiru/porta-sahumerio.webp",
+      "alt": "Un cuenco oscuro en una composición con madera, cerámica y humo."
+    }
+  }
+]

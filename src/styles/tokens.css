@@ -1,5 +1,9 @@
 :root {
-  /* Brand palette — Pueblo Mágico */
+  --font-inter: "Inter Variable";
+  --font-cormorant: "Cormorant Garamond Variable";
+  --font-cinzel: "Cinzel Variable";
+
+  /* Shared design system palette */
   --forest: #2c3327;
   --forest-hover: #3a4334;
   --forest-active: #23291f;
