@@ -1,0 +1,41 @@
+---
+import type { Product } from "../lib/catalog";
+import { categoryInfo } from "../lib/categories";
+import { sitePath } from "../lib/site";
+
+interface Props {
+  items: Product[];
+  filterable?: boolean;
+}
+
+const { items, filterable = false } = Astro.props;
+---
+
+<ul class="nayiru-grid" data-product-grid={filterable ? "" : undefined}>
+  {items.map((item) => {
+    const category = categoryInfo[item.category];
+    const search = [
+      item.title, category.label, item.description, item.story, item.origin,
+      ...item.tags, ...item.materials,
+    ].filter(Boolean).join(" ");
+    return (
+      <li
+        data-category={filterable ? item.category : undefined}
+        data-collection={filterable ? category.collection : undefined}
+        data-title={filterable ? item.title : undefined}
+        data-search={filterable ? search : undefined}
+      >
+        <a class="nayiru-card" href={sitePath(`/es/shop/${item.slug}/`)}>
+          <div class="nayiru-card-photo">
+            <img src={sitePath(item.image)} alt="" loading="lazy" decoding="async" />
+          </div>
+          <div class="nayiru-card-copy">
+            <p class="nayiru-kicker">{category.label}</p>
+            <h3>{item.title}</h3>
+            <span class="nayiru-card-link">Ver detalles</span>
+          </div>
+        </a>
+      </li>
+    );
+  })}
+</ul>

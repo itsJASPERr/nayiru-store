@@ -1,0 +1,81 @@
+---
+import ProductGrid from "../../../components/ProductGrid.astro";
+import SearchIcon from "../../../components/SearchIcon.astro";
+import Storefront from "../../../layouts/Storefront.astro";
+import { getCatalog } from "../../../lib/catalog";
+import { categoryInfo } from "../../../lib/categories";
+import { sitePath } from "../../../lib/site";
+
+const { items, editorial } = await getCatalog();
+const shop = sitePath("/es/shop/");
+const filters = [
+  { id: "", label: "Todas las piezas" },
+  ...Object.entries(categoryInfo).map(([id, { label }]) => ({ id, label })),
+];
+const left = sitePath("/nayiru/catalogo-izquierda.webp");
+const right = sitePath("/nayiru/catalogo-derecha.webp");
+---
+
+<Storefront title="Colección NAYIRU">
+  <section
+    class="nayiru-catalog-hero"
+    style={`--nayiru-catalog-left: url('${left}'); --nayiru-catalog-right: url('${right}');`}
+  >
+    <div class="nayiru-container">
+      <div class="nayiru-ornament" aria-hidden="true"><span></span></div>
+      <h1 data-catalog-title>Colección NAYIRU</h1>
+      <p>Artesanía inspirada en la naturaleza y la sabiduría ancestral.</p>
+    </div>
+  </section>
+
+  <div class="nayiru-container nayiru-catalog" data-catalog>
+    <aside class="nayiru-catalog-sidebar">
+      <h2>Categorías</h2>
+      <nav class="nayiru-filter-nav" aria-label="Categorías del catálogo">
+        {filters.map(({ id, label }) => (
+          <a
+            data-filter={id}
+            href={id ? `${shop}?collection=${id}` : shop}
+            aria-current={id ? undefined : "true"}
+          >{label}</a>
+        ))}
+      </nav>
+    </aside>
+
+    <section class="nayiru-results" aria-labelledby="resultados">
+      <h2 id="resultados" class="sr-only">Piezas de la colección</h2>
+      <form class="nayiru-search-form" role="search" action={shop}>
+        <label class="nayiru-search-field">
+          <span>Buscar piezas</span>
+          <input type="search" name="q" id="buscar" maxlength="120" placeholder="Nombre, material o detalle" />
+        </label>
+        <label class="nayiru-sort-field">
+          <span>Ordenar por</span>
+          <select name="sort">
+            <option value="best">Destacadas</option>
+            <option value="title-asc">Nombre, A a Z</option>
+            <option value="title-desc">Nombre, Z a A</option>
+          </select>
+        </label>
+        <button class="nayiru-button nayiru-button-search" type="submit"><SearchIcon /> Buscar</button>
+      </form>
+
+      <div class="nayiru-result-info">
+        <p data-result-count aria-live="polite">{items.length === 1 ? "1 pieza" : `${items.length} piezas`}</p>
+        <a href={shop} data-clear-filters class="nayiru-text-link" hidden>Limpiar filtros</a>
+      </div>
+
+      {editorial && items.length > 0 && <p class="nayiru-preview-note">Vista editorial. Las piezas y fotos del boceto se muestran como referencia.</p>}
+      <ProductGrid items={items} filterable />
+      <div class="nayiru-empty" data-empty-state hidden={items.length > 0}>
+        <h2>{items.length ? "No encontramos piezas" : "Estamos preparando la colección"}</h2>
+        <p>{items.length ? "Prueba otra palabra o elige una categoría diferente." : "Vuelve pronto para conocer las piezas de NAYIRU."}</p>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    import { initCatalog } from "../../../lib/catalog-browser";
+    initCatalog();
+  </script>
+</Storefront>

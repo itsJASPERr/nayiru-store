@@ -1,0 +1,94 @@
+---
+import SearchIcon from "../components/SearchIcon.astro";
+import { sitePath, whatsappHref } from "../lib/site";
+import "../styles/base.css";
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = "NAYIRU",
+  description = "Artesanía, memoria y cultura viva. Explora las colecciones de NAYIRU.",
+} = Astro.props;
+const home = sitePath("/");
+const shop = sitePath("/es/shop/");
+const contact = whatsappHref();
+const navigation = [
+  { href: home, label: "Inicio" },
+  { href: shop, label: "Tienda" },
+  { href: `${home}#colecciones`, label: "Colecciones" },
+  { href: `${home}#sobre-nayiru`, label: "Sobre NAYIRU" },
+];
+---
+
+<!doctype html>
+<html lang="es" data-scroll-behavior="smooth">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#1c2a25" />
+    <link rel="icon" href={sitePath("/icon.png")} type="image/png" />
+    <title>{title}</title>
+  </head>
+  <body class="nayiru-site">
+    <a href="#contenido" class="nayiru-skip">Saltar al contenido</a>
+    <header class="nayiru-header">
+      <div class="nayiru-container nayiru-header-inner">
+        <a class="nayiru-brand" href={home} aria-label="NAYIRU, inicio">
+          <img class="nayiru-mark" src={sitePath("/nayiru/simbolo-oscuro.webp")} width="42" height="44" alt="" />
+          <span>
+            <span class="nayiru-wordmark">NAYIRU</span>
+            <span class="nayiru-brandline">Artesanía y cultura viva</span>
+          </span>
+        </a>
+        <nav class="nayiru-nav" aria-label="Navegación principal">
+          {navigation.map(({ href, label }) => <a href={href}>{label}</a>)}
+          <a class="nayiru-nav-contact" href={contact}>Contacto</a>
+        </nav>
+        <div class="nayiru-header-actions">
+          <a href={`${shop}#buscar`} aria-label="Buscar en la tienda" class="nayiru-search-link">
+            <SearchIcon />
+          </a>
+          <details class="nayiru-menu">
+            <summary>
+              <span class="sr-only">Menú</span>
+              <span aria-hidden="true"></span>
+            </summary>
+            <nav aria-label="Navegación móvil">
+              {navigation.map(({ href, label }) => <a href={href}>{label}</a>)}
+              <a href={contact}>Contacto</a>
+            </nav>
+          </details>
+        </div>
+      </div>
+    </header>
+
+    <main id="contenido" tabindex="-1"><slot /></main>
+
+    <footer class="nayiru-footer">
+      <div class="nayiru-container nayiru-footer-inner">
+        <img class="nayiru-mark" src={sitePath("/nayiru/logo-oscuro.webp")} width="62" height="72" alt="NAYIRU" loading="lazy" />
+        <nav aria-label="Pie de página">
+          {navigation.slice(1).map(({ href, label }) => <a href={href}>{label}</a>)}
+          <a href={contact}>WhatsApp</a>
+        </nav>
+        <small>© {new Date().getFullYear()} NAYIRU</small>
+      </div>
+    </footer>
+    <script>
+      const menu = document.querySelector<HTMLDetailsElement>(".nayiru-menu");
+      menu?.addEventListener("click", (event) => {
+        if (event.target instanceof Element && event.target.closest("a")) menu.open = false;
+      });
+      menu?.addEventListener("keydown", (event) => {
+        if (event.key === "Escape" && menu.open) {
+          menu.open = false;
+          menu.querySelector("summary")?.focus();
+        }
+      });
+    </script>
+  </body>
+</html>

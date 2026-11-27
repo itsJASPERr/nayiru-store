@@ -1,0 +1,16 @@
+{
+  "slug": "tambor-ceremonial",
+  "state": "editorial",
+  "title": "Tambor Ceremonial",
+  "category": "instrumentos",
+  "description": "Un cuerpo de madera con parche claro y cuerdas de tensión visibles.",
+  "story": "Las cuerdas recorren el cuerpo del tambor y mantienen el parche en su lugar. La imagen muestra ese encuentro entre madera, parche y tensión.",
+  "tags": [
+    "madera",
+    "parche",
+    "cuerdas"
+  ],
+  "image": "/products/tambor-ceremonial.webp",
+  "image_alt": "Un cuerpo de madera con parche claro y cuerdas de tensión visibles.",
+  "position": 60
+}

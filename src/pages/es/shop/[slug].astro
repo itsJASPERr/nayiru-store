@@ -1,0 +1,54 @@
+---
+import type { GetStaticPaths } from "astro";
+import ProductGrid from "../../../components/ProductGrid.astro";
+import Storefront from "../../../layouts/Storefront.astro";
+import { getCatalog, relatedProducts } from "../../../lib/catalog";
+import { categoryInfo } from "../../../lib/categories";
+import { sitePath, whatsappHref } from "../../../lib/site";
+
+export const getStaticPaths = (async () => {
+  const { items } = await getCatalog();
+  return items.map((item) => ({
+    params: { slug: item.slug },
+    props: { item, related: relatedProducts(item, items) },
+  }));
+}) satisfies GetStaticPaths;
+
+const { item, related } = Astro.props;
+const editorial = item.state === "editorial";
+---
+
+<Storefront title={`${item.title} · NAYIRU`} description={item.description}>
+  <div class="nayiru-container nayiru-product">
+    <a class="nayiru-text-link nayiru-back" href={sitePath("/es/shop/")}>Volver a la tienda</a>
+    <article class="nayiru-product-layout">
+      <div class="nayiru-product-photo">
+        <img src={sitePath(item.image)} alt={item.image_alt} fetchpriority="high" />
+      </div>
+      <div class="nayiru-product-copy">
+        <p class="nayiru-kicker">{categoryInfo[item.category].label}</p>
+        <h1>{item.title}</h1>
+        <p class="nayiru-product-intro">{item.description}</p>
+        {editorial && <p class="nayiru-preview-note">Pieza de referencia del diseño original.</p>}
+        <a class="nayiru-button nayiru-button-search" href={whatsappHref(item.title)}>Consultar por WhatsApp</a>
+        <section class="nayiru-product-story">
+          <h2>{editorial ? "La pieza de cerca" : "Historia de la pieza"}</h2>
+          <p>{item.story}</p>
+          {(item.origin || item.materials.length > 0) && (
+            <dl>
+              {item.origin && <div><dt>Origen</dt><dd>{item.origin}</dd></div>}
+              {item.materials.length > 0 && <div><dt>Materiales</dt><dd>{item.materials.join(", ")}</dd></div>}
+            </dl>
+          )}
+        </section>
+      </div>
+    </article>
+
+    {related.length > 0 && (
+      <section class="nayiru-related">
+        <header class="nayiru-section-heading"><h2>También en la colección</h2></header>
+        <ProductGrid items={related} />
+      </section>
+    )}
+  </div>
+</Storefront>

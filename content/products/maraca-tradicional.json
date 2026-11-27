@@ -1,0 +1,15 @@
+{
+  "slug": "maraca-tradicional",
+  "state": "editorial",
+  "title": "Maraca Tradicional",
+  "category": "instrumentos",
+  "description": "Una maraca de mango de madera con detalles tejidos.",
+  "story": "La fotografía reúne la madera lisa del mango y la trama del cuerpo. La forma invita a detenerse en cómo se sostiene el instrumento.",
+  "tags": [
+    "madera",
+    "tejido"
+  ],
+  "image": "/products/maraca-tradicional.webp",
+  "image_alt": "Una maraca de mango de madera con detalles tejidos.",
+  "position": 50
+}

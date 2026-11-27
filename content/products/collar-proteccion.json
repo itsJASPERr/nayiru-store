@@ -1,0 +1,15 @@
+{
+  "slug": "collar-proteccion",
+  "state": "editorial",
+  "title": "Collar Protección",
+  "category": "collares",
+  "description": "Un dije de piedra ovalada enmarcado por un tejido oscuro.",
+  "story": "El entramado rodea la piedra y deja a la vista sus reflejos. La fotografía destaca el contraste entre la superficie lisa del dije y la textura del cordón.",
+  "tags": [
+    "piedra",
+    "tejido"
+  ],
+  "image": "/products/collar-proteccion.webp",
+  "image_alt": "Un dije de piedra ovalada enmarcado por un tejido oscuro.",
+  "position": 30
+}

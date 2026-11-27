@@ -1,0 +1,88 @@
+media:
+  input: media/products
+  output: /products
+  rename: safe
+  extensions: [avif, jpg, jpeg, png, webp]
+
+content:
+  - name: products
+    label: Piezas
+    type: collection
+    path: content/products
+    format: json
+    filename: "{fields.slug}.json"
+    view:
+      primary: title
+      fields: [title, category, state]
+      search: [title, slug, category]
+      sort: [position, title]
+      default:
+        sort: position
+        order: asc
+    fields:
+      - name: title
+        label: Nombre
+        type: string
+        required: true
+      - name: slug
+        label: Identificador de URL
+        description: Usa letras minúsculas, números y guiones. Mantén el mismo identificador para conservar los enlaces.
+        type: string
+        required: true
+      - name: state
+        label: Estado
+        default: draft
+        type: select
+        required: true
+        options:
+          values:
+            - { name: draft, label: Borrador }
+            - { name: editorial, label: Referencia editorial }
+            - { name: published, label: Publicada }
+      - name: category
+        label: Categoría
+        type: select
+        required: true
+        options:
+          values:
+            - { name: pulseras, label: Pulseras }
+            - { name: collares, label: Collares }
+            - { name: aretes, label: Aretes }
+            - { name: anillos, label: Anillos }
+            - { name: instrumentos, label: Instrumentos }
+            - { name: accesorios, label: Accesorios }
+            - { name: decoracion, label: Decoración }
+      - name: description
+        label: Descripción breve
+        type: text
+        required: true
+      - name: story
+        label: Historia de la pieza
+        type: text
+        required: true
+      - name: image
+        label: Fotografía
+        type: image
+        required: true
+      - name: image_alt
+        label: Texto alternativo de la foto
+        type: string
+        required: true
+      - name: origin
+        label: Origen
+        type: string
+      - name: materials
+        label: Materiales
+        type: string
+        list: true
+      - name: tags
+        label: Términos de búsqueda
+        type: string
+        list: true
+      - name: position
+        label: Orden en el catálogo
+        description: Usa un número entero. Los números más bajos aparecen primero.
+        type: number
+        default: 1000
+        options:
+          min: 0

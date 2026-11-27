@@ -1,0 +1,66 @@
+---
+import ProductGrid from "./ProductGrid.astro";
+import { getCatalog } from "../lib/catalog";
+import { collections } from "../lib/categories";
+import { sitePath, whatsappHref } from "../lib/site";
+
+const { items, editorial } = await getCatalog();
+const shop = sitePath("/es/shop/");
+---
+
+<section class="nayiru-home-hero">
+  <div class="nayiru-home-image">
+    <img src={sitePath("/nayiru/hero.webp")} alt="" width="592" height="385" fetchpriority="high" />
+  </div>
+  <div class="nayiru-container nayiru-home-inner">
+    <p class="nayiru-kicker">Artesanía y cultura viva</p>
+    <h1>NAYIRU</h1>
+    <p class="nayiru-hero-description">Piezas que cuentan historias</p>
+    <div class="nayiru-hero-actions">
+      <a class="nayiru-button nayiru-button-gold" href={whatsappHref()}>Consultar por WhatsApp</a>
+      <a class="nayiru-button nayiru-button-outline" href={shop}>Explorar la tienda</a>
+    </div>
+  </div>
+</section>
+
+<section id="colecciones" class="nayiru-section">
+  <div class="nayiru-container">
+    <header class="nayiru-section-heading"><h2>Colecciones</h2></header>
+    <ul class="nayiru-collections">
+      {collections.map(({ id, label, image }) => (
+        <li>
+          <a href={`${shop}?collection=${id}`}>
+            <img src={sitePath(image)} width="60" height="60" alt="" loading="lazy" />
+            <span>{label}</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<section class="nayiru-section nayiru-featured">
+  <div class="nayiru-container">
+    <header class="nayiru-section-heading">
+      <h2>{editorial ? "Piezas de la colección" : "Piezas destacadas"}</h2>
+      <a class="nayiru-text-link" href={shop}>Ver todo el catálogo</a>
+    </header>
+    {items.length ? (
+      <>
+        {editorial && <p class="nayiru-preview-note">Selección del diseño original. Las piezas se muestran como referencia editorial.</p>}
+        <ProductGrid items={items.slice(0, 4)} />
+      </>
+    ) : <p>Estamos preparando la colección.</p>}
+  </div>
+</section>
+
+<section id="sobre-nayiru" class="nayiru-section nayiru-about">
+  <div class="nayiru-container nayiru-about-inner">
+    <div>
+      <h2>Sobre NAYIRU</h2>
+      <p>Una cuenta, un hilo, una veta. En cada pieza quedan huellas de la mano que la hizo. NAYIRU reúne artesanía y relatos para mirar de cerca esos detalles y acercarnos a los saberes que pasan de mano en mano.</p>
+      <a class="nayiru-text-link" href={whatsappHref()}>Escríbenos por WhatsApp</a>
+    </div>
+    <img src={sitePath("/nayiru/logo-claro.webp")} width="238" height="276" alt="NAYIRU, sol y montañas" loading="lazy" />
+  </div>
+</section>

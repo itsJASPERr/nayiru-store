@@ -1,0 +1,14 @@
+---
+import Storefront from "../layouts/Storefront.astro";
+import { sitePath } from "../lib/site";
+---
+
+<Storefront title="Página no encontrada · NAYIRU">
+  <section class="nayiru-container nayiru-section">
+    <div class="nayiru-empty">
+      <h1>No encontramos esta página</h1>
+      <p>Explora las piezas de la colección NAYIRU.</p>
+      <a class="nayiru-text-link" href={sitePath("/es/shop/")}>Volver a la tienda</a>
+    </div>
+  </section>
+</Storefront>
