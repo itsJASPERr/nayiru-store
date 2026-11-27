@@ -1,9 +1,11 @@
 {
   "slug": "rape",
   "state": "published",
-  "title": "Rapé",
+  "title": "Rapé Puxuri · 20 g",
   "category": "medicinas",
-  "description": "Del Pueblo Nukini en la selva brasileña",
-  "price_ars": 30000,
+  "description": "Rapé Puxuri en frasco de 20 g. Del Pueblo Nukini en la selva brasileña.",
+  "price_ars": 35000,
+  "image": "/products/rape-puxuri.webp",
+  "image_alt": "Frasco de Rapé Puxuri de 20 g con etiqueta dorada",
   "position": 430
 }

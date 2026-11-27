@@ -258,7 +258,8 @@
 
 .nayiru-collections {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-auto-columns: minmax(0, 1fr);
+  grid-auto-flow: column;
   border-block: 1px solid var(--color-border);
 }
 
@@ -690,8 +691,8 @@
   .nayiru-catalog-hero::before,
   .nayiru-catalog-hero::after { width: 72%; }
 
-  .nayiru-collections { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .nayiru-collections li:nth-child(3) { border-left: 0; }
+  .nayiru-collections { grid-auto-flow: row; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .nayiru-collections li:nth-child(odd) { border-left: 0; }
   .nayiru-collections li:nth-child(n + 3) { border-top: 1px solid var(--color-border); }
 
   .nayiru-about-inner { grid-template-columns: 1fr; gap: var(--space-24); }
