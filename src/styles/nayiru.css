@@ -306,19 +306,39 @@
 }
 
 .nayiru-catalog-hero {
-  padding-block: var(--space-32);
+  position: relative;
+  isolation: isolate;
+  padding-block: var(--space-24);
   text-align: center;
-  background-image:
-    linear-gradient(90deg, color-mix(in srgb, var(--color-primary) 42%, transparent),
-      var(--color-primary) 42%, var(--color-primary) 58%,
-      color-mix(in srgb, var(--color-primary) 42%, transparent)),
-    var(--nayiru-catalog-left), var(--nayiru-catalog-right);
-  background-repeat: no-repeat;
-  background-position: center, left center, right center;
-  background-size: cover, 46% 100%, 46% 100%;
+  background-color: #20160e;
 }
 
-.nayiru-catalog-hero h1 { font-size: clamp(1.75rem, 4vw, 3rem); }
+.nayiru-catalog-hero::before,
+.nayiru-catalog-hero::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset-block: 0;
+  width: 64%;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.nayiru-catalog-hero::before {
+  left: 0;
+  background-image: linear-gradient(90deg, transparent, rgb(20 13 9 / 70%)), var(--nayiru-catalog-left);
+  background-position: left center;
+  mask-image: linear-gradient(90deg, black 68%, transparent);
+}
+
+.nayiru-catalog-hero::after {
+  right: 0;
+  background-image: linear-gradient(270deg, transparent, rgb(20 13 9 / 70%)), var(--nayiru-catalog-right);
+  background-position: right center;
+  mask-image: linear-gradient(270deg, black 68%, transparent);
+}
+
+.nayiru-catalog-hero h1 { font-size: clamp(1.75rem, 3.3vw, 2.625rem); }
 
 .nayiru-catalog-hero p {
   font-size: clamp(1.25rem, 2.15vw, 1.5rem);
@@ -332,6 +352,30 @@
   height: 1px;
   margin: 0 auto var(--space-12);
   background: var(--color-accent);
+}
+
+.nayiru-catalog-ornament {
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+  width: calc(var(--space-96) + var(--space-32));
+  height: var(--space-16);
+  margin: 0 auto var(--space-12);
+}
+
+.nayiru-catalog-ornament::before,
+.nayiru-catalog-ornament::after {
+  content: "";
+  height: 1px;
+  flex: 1;
+  background: var(--color-accent);
+}
+
+.nayiru-catalog-ornament span {
+  width: var(--space-12);
+  height: var(--space-12);
+  border: 1px solid var(--color-accent);
+  transform: rotate(45deg);
 }
 
 .nayiru-catalog {
@@ -469,6 +513,10 @@
 
 .nayiru-card-category { color: var(--color-muted); font-size: 0.8125rem; }
 .nayiru-card-link { font-size: 0.8125rem; margin-top: auto; padding-top: var(--space-4); }
+
+.nayiru-catalog .nayiru-card-photo { aspect-ratio: 1 / 1.1; }
+.nayiru-catalog .nayiru-card-copy { padding-block: var(--space-8) var(--space-12); }
+.nayiru-catalog .nayiru-card-copy h3 { font-size: clamp(1.125rem, 1.55vw, 1.375rem); }
 
 .nayiru-product { max-width: 76rem; padding-block: var(--space-24) var(--section-space); }
 .nayiru-back { display: inline-block; margin-bottom: var(--space-24); }
@@ -609,7 +657,8 @@
   }
   .nayiru-home-inner { padding-block: var(--space-96) var(--space-32); }
 
-  .nayiru-catalog-hero { padding-block: var(--space-24); background-size: cover, auto 100%, auto 100%; }
+  .nayiru-catalog-hero::before,
+  .nayiru-catalog-hero::after { width: 72%; }
 
   .nayiru-collections { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .nayiru-collections li:nth-child(3) { border-left: 0; }
