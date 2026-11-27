@@ -55,7 +55,7 @@ const currentLink = (href: string) => {
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
-    <link rel="icon" href={sitePath("/nayiru/logo.jpg")} type="image/jpeg" />
+    <link rel="icon" href={sitePath("/favicon.png")} type="image/png" sizes="64x64" />
     <title>{title}</title>
     {noIndex ? <meta name="robots" content="noindex" /> : (
       <>
@@ -105,7 +105,7 @@ const currentLink = (href: string) => {
 
     <footer class="nayiru-footer">
       <div class="nayiru-container nayiru-footer-inner">
-        <a href={home} aria-label="NAYIRU, volver al inicio"><BrandLogo lazy /></a>
+        <a href={home} aria-label="NAYIRU, volver al inicio"><BrandLogo transparent lazy /></a>
         <nav aria-label="Pie de página">
           {navigation.slice(1).map(({ href, label }) => <a href={href}>{label}</a>)}
           <a class="nayiru-nav-contact" href={contact}>WhatsApp</a>

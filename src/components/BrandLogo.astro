@@ -12,6 +12,6 @@ const file = transparent ? "logo-transparent.png" : "logo.jpg";
 const size = transparent ? 900 : 1080;
 ---
 
-<span class:list={["nayiru-logo", className]}>
+<span class:list={["nayiru-logo", { "nayiru-logo-transparent": transparent }, className]}>
   <img src={sitePath(`/nayiru/${file}`)} width={size} height={size} alt="NAYIRU" loading={lazy ? "lazy" : undefined} decoding="async" />
 </span>

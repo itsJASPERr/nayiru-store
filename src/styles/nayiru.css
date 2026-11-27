@@ -56,12 +56,13 @@
 
 .nayiru-brand { width: fit-content; }
 
-.nayiru-brand .nayiru-logo {
-  --logo-size: var(--space-96);
+.nayiru-logo-transparent {
   padding: 0;
   border: 0;
   background: transparent;
 }
+
+.nayiru-brand .nayiru-logo { --logo-size: var(--space-96); }
 
 .nayiru-nav,
 .nayiru-header-actions { display: flex; align-items: center; }
